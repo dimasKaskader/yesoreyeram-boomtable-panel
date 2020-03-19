@@ -70,6 +70,9 @@ class BoomSeries implements IBoomSeries {
 
         this.tooltip = this.pattern.tooltipTemplate || "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_";
 
+        if (/_\d+_/.test(this.template_value))
+            this.display_value = getRowName(this.template_value, this.pattern.delimiter, this.row_col_wrapper, this.seriesName, this._metricname, this._tags);
+
         this.replaceSeriesRowColTokens();
 
         this.link = GetValuesReplaced(this.link, this.value, this.value_formatted, series.stats, this.decimals, this.pattern.format, this._metricname, this._tags, this.pattern.delimiter || "");

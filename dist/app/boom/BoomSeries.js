@@ -66,6 +66,8 @@ System.register(["app/core/time_series2", "lodash", "./index", "./BoomSeriesUtil
                     this.link = BoomUtils_1.replaceDelimitedColumns(this.link, this.seriesName, this.pattern.delimiter, this.row_col_wrapper);
                     this.tooltip = this.pattern.tooltipTemplate || "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_";
                     this.replaceSeriesRowColTokens();
+                    if (/_\d+_/.test(this.template_value))
+                        this.display_value = BoomUtils_1.getRowName(this.template_value, this.pattern.delimiter, this.row_col_wrapper, this.seriesName, this._metricname, this._tags);
                     this.link = BoomSeriesUtils_1.GetValuesReplaced(this.link, this.value, this.value_formatted, series.stats, this.decimals, this.pattern.format, this._metricname, this._tags, this.pattern.delimiter || "");
                     this.tooltip = BoomSeriesUtils_1.GetValuesReplaced(this.tooltip, this.value, this.value_formatted, series.stats, this.decimals, this.pattern.format, this._metricname, this._tags, this.pattern.delimiter || "");
                     this.display_value = BoomSeriesUtils_1.GetValuesReplaced(this.display_value, this.value, this.value_formatted, series.stats, this.decimals, this.pattern.format, this._metricname, this._tags, this.pattern.delimiter || "");
